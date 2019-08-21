@@ -16,16 +16,26 @@
   * destroy() // prototype method that returns: `${this.name} was removed from the game.`
 */
 
+//create the constructor
 function GameObject(obj){
-  this.createdAt = obj.createdAt,
-  this.name = obj.name,
-  this.dimensions = obj.dimensions
+  this.createdAt = obj.createdAt;
+  this.name = obj.name;
+  this.dimensions = obj.dimensions;
 }
-
+//destroy prototype
 GameObject.prototype.destroy = function(){
   return `${this.name} was removed from the game.`;
 }
 
+//Object.create test
+// let newGame = new GameObject({
+//   createdAt: new Date(),
+//   name: "matt",
+//   dimensions: "2x4"
+// });
+
+
+// CharacterStats.prototype.constructor = CharacterStats;
 /*
   === CharacterStats ===
   * healthPoints
@@ -37,8 +47,9 @@ function CharacterStats(obj){
   GameObject.call(this,obj);
   this.healthPoints = obj.healthPoints
 }
-
-
+// CharacterStats.prototype = Object.create(GameObject.prototype);
+// CharacterStats.prototype = Object.create(GameObject.prototype);
+CharacterStats.prototype = Object.create(GameObject.prototype);
 CharacterStats.prototype.takeDamage = function(){
   return `${this.name} took damage.`;
 }
@@ -54,12 +65,19 @@ CharacterStats.prototype.takeDamage = function(){
 */
 
 function Humanoid(obj){
-  GameObject.call(this,obj);
+  // GameObject.call(this,obj);
   CharacterStats.call(this,obj);
   this.team = obj.team,
   this.weapons = obj.weapons,
   this.language = obj.language
 }
+
+// let newHumanoid = new Humanoid({
+//   team: "team",
+//   weapons: "gun",
+//   language: "english"
+// })
+Humanoid.prototype = Object.create(CharacterStats.prototype);
 
 Humanoid.prototype.greet = function(){
   return `${this.name} offers a greeting in ${this.language}`;
@@ -134,6 +152,8 @@ Humanoid.prototype.greet = function(){
   console.log(archer.greet()); // Lilith offers a greeting in Elvish.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
   console.log(mage.takeDamage()); // Bruce took damage.
+  
+  
   
 
 

@@ -162,11 +162,12 @@ Humanoid.prototype.greet = function(){
 
 function Villain(){
 Humanoid.call(this,obj);
-
+  this.damage = obj.damage;
 }
 
 function Hero(){
 Humanoid.call(this,obj);
+  this.damage = obj.damage;
 }
 
 Villain.prototype = Object.create(Humanoid.prototype);
@@ -175,7 +176,16 @@ Hero.prototype = Object.create(Humanoid.prototype)
 
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
 
-Villain.prototype.removeHealth = function(){
+Villain.prototype.reduceHealth = function(){
+  //set standard damage
+  const damagePoints = this.damage;
+
+
+}
+
+Hero.prototype.attackVillain = function(){
+  //set standard damage
+  const damagePoints = this.damage;
 
 }
 
@@ -183,3 +193,40 @@ Villain.prototype.removeHealth = function(){
 
 
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+  let newHero = new Hero({
+    createdAt: new Date(),
+    dimensions: {
+      length: 2,
+      width: 4,
+      height: 2,
+    },
+    healthPoints: 15,
+    name: 'Gimli',
+    team: 'The Council',
+    weapons: [
+      'Giant Axe',
+      'Shield',
+    ],
+    language: 'dwarvish',
+    damage: 3
+  })
+
+
+  let newVillain = new Villain({
+    createdAt: new Date(),
+    dimensions: {
+      length: 2,
+      width: 3,
+      height: 2,
+    },
+    healthPoints: 15,
+    name: 'Trogdor',
+    team: 'Chaos Dragons',
+    weapons: [
+      'Flame Breath',
+      'Scales',
+    ],
+    language: 'Dragon',
+    damage: 3
+  })

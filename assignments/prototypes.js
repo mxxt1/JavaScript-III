@@ -69,7 +69,8 @@ function Humanoid(obj){
   CharacterStats.call(this,obj);
   this.team = obj.team,
   this.weapons = obj.weapons,
-  this.language = obj.language
+  this.language = obj.language,
+  this.identity = obj.identity
 }
 
 // let newHumanoid = new Humanoid({
@@ -106,6 +107,7 @@ Humanoid.prototype.greet = function(){
       'Staff of Shamalama',
     ],
     language: 'Common Tongue',
+    identity: undefined
   });
 
   const swordsman = new Humanoid({
@@ -123,6 +125,7 @@ Humanoid.prototype.greet = function(){
       'Shield',
     ],
     language: 'Common Tongue',
+identity: undefined
   });
 
   const archer = new Humanoid({
@@ -140,6 +143,7 @@ Humanoid.prototype.greet = function(){
       'Dagger',
     ],
     language: 'Elvish',
+identity: undefined
   });
 
   console.log(mage.createdAt); // Today's date
@@ -218,7 +222,10 @@ Hero.prototype.receiveDamage = function(){
       'Shield',
     ],
     language: 'dwarvish',
-    damage: 3
+    damage: 3,
+    identity: undefined,
+    baseMultiplier: .5
+
   })
 
 
@@ -238,4 +245,5 @@ Hero.prototype.receiveDamage = function(){
     ],
     language: 'Dragon',
     damage: 3
+identity: undefined,
   })

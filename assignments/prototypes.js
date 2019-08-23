@@ -160,15 +160,20 @@ Humanoid.prototype.greet = function(){
   // Stretch task: 
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
 
-function Villain(){
+function Villain(obj){
 Humanoid.call(this,obj);
   this.damage = obj.damage;
+  this.healthPoints = obj.healthPoints;
 }
 
-function Hero(){
+console.log(Villain);
+
+function Hero(obj){
 Humanoid.call(this,obj);
   this.damage = obj.damage;
+  this.healthPoints = obj.healthPoints;
 }
+console.log(Hero);
 
 Villain.prototype = Object.create(Humanoid.prototype);
 Hero.prototype = Object.create(Humanoid.prototype)
@@ -176,18 +181,22 @@ Hero.prototype = Object.create(Humanoid.prototype)
 
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
 
-Villain.prototype.reduceHealth = function(){
+// Villain.prototype.reduceHealth = function(obj){
+//   //set standard damage
+//   const damagePoints = this.damage;
+
+
+// }
+
+Hero.prototype.receiveDamage = function(){
   //set standard damage
   const damagePoints = this.damage;
-
-
-}
-
-Hero.prototype.attackVillain = function(){
-  //set standard damage
-  const damagePoints = this.damage;
-
-}
+  if (!(this.healthPoints-this.damage) <= 0){
+      return this.healthpoints-this.damage;
+  } else {
+      return `${this.name} has died`;
+  }
+};
 
 
 
